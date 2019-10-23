@@ -1,4 +1,5 @@
 // Write your JavaScript code here!
+
 window.addEventListener("load", function() {
 	let form = document.querySelector("form");
 
@@ -6,54 +7,54 @@ window.addEventListener("load", function() {
 		event.preventDefault();
 		event.stopPropagation();
 
-		let items = document.getElementById('faultyItems');
-		let launchStatus = document.getElementById('launchStatus');
-		let fuelStatus = document.getElementById('fuelStatus');
-		let cargoStatus = document.getElementById('cargoStatus')
+		let items = document.getElementById("faultyItems");
+		let launchStatus = document.getElementById("launchStatus");
+		let fuelStatus = document.getElementById("fuelStatus");
+		let cargoStatus = document.getElementById("cargoStatus")
 		let ready = true;
 
 		let pilotName = document.querySelector("input[name=pilotName]").value;
 		let copilotName = document.querySelector("input[name=copilotName]").value;
 		let fuelLevel = document.querySelector("input[name=fuelLevel]").value;
 		let cargoMass = document.querySelector("input[name=cargoWeight]").value;
-
-		if (pilotName === "" || copilotName === "" || fuelLevel === '' || isNaN(fuelLevel) || cargoMass === '' || isNaN(cargoMass) ) {
+		
+		if (pilotName === "" || copilotName === "" || fuelLevel === "" || cargoMass === "") {
 
 			alert("All fields are required!");
 			items.style.visibility = 'hidden';
 
-			launchStatus.style.color = 'black';
-			launchStatus.innerHTML = 'Awaiting Information Before Launch';
+			launchStatus.style.color = "black";
+			launchStatus.innerHTML = "Awaiting Information Before Launch";
 
-		} else {
+		}else {
 
-			items.style.visibility = 'visible';
+			items.style.visibility = "visible";
 
-			document.getElementById('pilotStatus').innerHTML = `Pilot ${ pilotName + ' ' }Ready`
-			document.getElementById('copilotStatus').innerHTML = `Co-pilot ${ copilotName + ' ' }Ready`
+			document.getElementById("pilotStatus").innerHTML = `Pilot ${ pilotName + ' ' }Ready`
+			document.getElementById("copilotStatus").innerHTML = `Co-pilot ${ copilotName + ' ' }Ready`
 
 			if (fuelLevel < 10000) {
 				ready = false;
-				fuelStatus.innerHTML = 'Fuel level to low for launch';
+				fuelStatus.innerHTML = "Fuel level to low for launch";
 			} else {
-				fuelStatus.innerHTML = 'Fuel level high enough for launch';
+				fuelStatus.innerHTML = "Fuel level high enough for launch";
 			}
 
 			if (cargoMass > 10000) {
 				ready = false;
-				cargoStatus.innerHTML = 'Mass level to high for the shuttle to take off';
+				cargoStatus.innerHTML = "Mass level to high for the shuttle to take off";
 			} else {
-				cargoStatus.innerHTML = 'Cargo mass low enough for launch';
+				cargoStatus.innerHTML = "Cargo mass low enough for launch";
 			}
 
 			if (ready) {
-				launchStatus.style.color = 'green';
-				launchStatus.innerHTML = 'Shuttle is ready for launch';
+				launchStatus.style.color = "green";
+				launchStatus.innerHTML = "Shuttle is ready for launch";
 				retrieveData();
 			} else {
-				items.style.visibility = 'visible';
-				launchStatus.style.color = 'red';
-				launchStatus.innerHTML = 'Shuttle not ready for launch';
+				items.style.visibility = "visible";
+				launchStatus.style.color = "red";
+				launchStatus.innerHTML = "Shuttle not ready for launch";
 			}
 
 		}
